@@ -2,78 +2,67 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Supershop Panel Simulator</title>
+  <title>Zeus Panel</title>
   <style>
     body {
-      background-color: #000000;
-      color: white;
-      text-align: center;
-      font-family: Arial, sans-serif;
+      font-family: Arial;
+      background: #111;
+      color: #fff;
+      padding: 30px;
     }
-
-    .container {
-      margin-top: 80px;
+    .switch {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
     }
-
-    h1 {
-      color: #00ffff;
-    }
-
-    .feature {
-      margin-top: 30px;
-    }
-
-    button {
-      padding: 12px 25px;
-      font-size: 18px;
-      background-color: #1e90ff;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin: 10px;
-    }
-
-    button:hover {
-      background-color: #0d6efd;
-    }
-
-    .status {
-      font-size: 16px;
-      margin-top: 10px;
-      color: #00ff00;
+    .switch input {
+      margin-right: 10px;
+      transform: scale(1.5);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Supershop Panel - ระบบจำลอง</h1>
-    <p>สำหรับทดลองเท่านั้น ไม่มีการทำงานจริง</p>
+  <h1>🛡️ Zeus Panel</h1>
 
-    <div class="feature">
-      <button onclick="activate('ดูดหัว 50%')">เปิดดูดหัว 50%</button>
-      <div class="status" id="status1"></div>
-    </div>
+  <div class="switch">
+    <input type="checkbox" id="aimbot">
+    <label for="aimbot">เปิดดูดหัว 50%</label>
+  </div>
 
-    <div class="feature">
-      <button onclick="activate('กระสุนตรง', 'status2')">เปิดกระสุนตรง</button>
-      <div class="status" id="status2"></div>
-    </div>
+  <div class="switch">
+    <input type="checkbox" id="nogban">
+    <label for="nogban">เปิดกันแบน</label>
+  </div>
 
-    <div class="feature">
-      <button onclick="activate('กันแบน', 'status3')">เปิดกันแบน</button>
-      <div class="status" id="status3"></div>
-    </div>
+  <div class="switch">
+    <input type="checkbox" id="straight">
+    <label for="straight">เปิดกระสุนตรง</label>
+  </div>
+
+  <div class="switch">
+    <input type="checkbox" id="speed">
+    <label for="speed">เปิดวิ่งเร็ว</label>
+  </div>
+
+  <div class="switch">
+    <input type="checkbox" id="invisible">
+    <label for="invisible">เปิดล่องหน</label>
   </div>
 
   <script>
-    function activate(feature, statusId) {
-      const id = statusId || 'status1';
-      const statusDiv = document.getElementById(id);
-      statusDiv.innerText = กำลังเปิดระบบ ${feature}...;
-      setTimeout(() => {
-        statusDiv.innerText = ✅ ระบบ ${feature} เปิดใช้งานแล้ว (FreeFire);
-      }, 2000);
+    const features = {
+      aimbot: "ดูดหัว 50%",
+      nogban: "กันแบน",
+      straight: "กระสุนตรง",
+      speed: "วิ่งเร็ว",
+      invisible: "ล่องหน"
+    };
+
+    for (let id in features) {
+      document.getElementById(id).addEventListener("change", function() {
+        const status = this.checked ? "เปิด" : "ปิด";
+        alert(${status} ${features[id]} แล้ว);
+      });
     }
   </script>
 </body>
