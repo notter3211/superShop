@@ -1,52 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alex Panel</title>
   <style>
     body {
-      font-family: Arial;
-      background: #111;
-      color: #fff;
-      padding: 30px;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      padding: 40px;
+      margin: 0;
     }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+    }
+
+    .panel {
+      max-width: 500px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
     .switch {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      margin-bottom: 15px;
+      margin: 20px 0;
     }
+
+    .switch label {
+      font-size: 1.2em;
+    }
+
     .switch input {
-      margin-right: 10px;
-      transform: scale(1.5);
+      width: 50px;
+      height: 25px;
+      position: relative;
+      appearance: none;
+      background: #444;
+      outline: none;
+      border-radius: 25px;
+      transition: 0.4s;
+      cursor: pointer;
+    }
+
+    .switch input:checked {
+      background: #00ff99;
+    }
+
+    .switch input::before {
+      content: '';
+      position: absolute;
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+      top: 1px;
+      left: 1px;
+      background: white;
+      transition: 0.4s;
+    }
+
+    .switch input:checked::before {
+      transform: translateX(25px);
     }
   </style>
 </head>
 <body>
   <h1>🛡️ Alex Panel</h1>
-
-  <div class="switch">
-    <input type="checkbox" id="aimbot">
-    <label for="aimbot">เปิดดูดหัว 50%</label>
-  </div>
-
-  <div class="switch">
-    <input type="checkbox" id="nogban">
-    <label for="nogban">เปิดกันแบน</label>
-  </div>
-
-  <div class="switch">
-    <input type="checkbox" id="straight">
-    <label for="straight">เปิดกระสุนตรง</label>
-  </div>
-
-  <div class="switch">
-    <input type="checkbox" id="speed">
-    <label for="speed">เปิดวิ่งเร็ว</label>
-  </div>
-
-  <div class="switch">
-    <input type="checkbox" id="invisible">
-    <label for="invisible">เปิดล่องหน</label>
+  <div class="panel">
+    <div class="switch">
+      <label for="aimbot">เปิดดูดหัว 50%</label>
+      <input type="checkbox" id="aimbot" />
+    </div>
+    <div class="switch">
+      <label for="nogban">เปิดกันแบน</label>
+      <input type="checkbox" id="nogban" />
+    </div>
+    <div class="switch">
+      <label for="straight">เปิดกระสุนตรง</label>
+      <input type="checkbox" id="straight" />
+    </div>
+    <div class="switch">
+      <label for="stability">เปิดความเสถียร</label>
+      <input type="checkbox" id="stability" />
+    </div>
   </div>
 
   <script>
@@ -54,13 +98,12 @@
       aimbot: "ดูดหัว 50%",
       nogban: "กันแบน",
       straight: "กระสุนตรง",
-      speed: "วิ่งเร็ว",
-      invisible: "ล่องหน"
+      stability: "ความเสถียร"
     };
 
     for (let id in features) {
-      document.getElementById(id).addEventListener("change", function() {
-        const status = this.checked ? "เปิด" : "ปิด";
+      document.getElementById(id).addEventListener("change", function () {
+        const status = this.checked ? "✅ เปิด" : "❌ ปิด";
         alert(${status} ${features[id]} แล้ว);
       });
     }
