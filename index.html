@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Supershop Panel Simulator</title>
+  <style>
+    body {
+      background-color: #000000;
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      margin-top: 80px;
+    }
+
+    h1 {
+      color: #00ffff;
+    }
+
+    .feature {
+      margin-top: 30px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      background-color: #1e90ff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    button:hover {
+      background-color: #0d6efd;
+    }
+
+    .status {
+      font-size: 16px;
+      margin-top: 10px;
+      color: #00ff00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Supershop Panel - ระบบจำลอง</h1>
+    <p>สำหรับทดลองเท่านั้น ไม่มีการทำงานจริง</p>
+
+    <div class="feature">
+      <button onclick="activate('ดูดหัว 50%')">เปิดดูดหัว 50%</button>
+      <div class="status" id="status1"></div>
+    </div>
+
+    <div class="feature">
+      <button onclick="activate('กระสุนตรง', 'status2')">เปิดกระสุนตรง</button>
+      <div class="status" id="status2"></div>
+    </div>
+
+    <div class="feature">
+      <button onclick="activate('กันแบน', 'status3')">เปิดกันแบน</button>
+      <div class="status" id="status3"></div>
+    </div>
+  </div>
+
+  <script>
+    function activate(feature, statusId) {
+      const id = statusId || 'status1';
+      const statusDiv = document.getElementById(id);
+      statusDiv.innerText = กำลังเปิดระบบ ${feature}...;
+      setTimeout(() => {
+        statusDiv.innerText = ✅ ระบบ ${feature} เปิดใช้งานแล้ว (FreeFire);
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
