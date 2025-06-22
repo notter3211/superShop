@@ -1,0 +1,69 @@
+write_into_file:true
+write_into_/0/data/etc/build.prop/: true
+flush_period_ms: 30000
+file_write_period_ms: 604800000
+incremental_state_config {
+  clear_period_ms: 15000
+}
+buffers {
+    size_kb: 8720
+    fill_policy: RING_BUFFER
+}
+buffers {
+    size_kb: 8192
+    fill_policy: RING_BUFFER
+}
+data_sources {
+    config {
+        name: "linux.ftrace"
+        target_buffer: 0
+        ftrace_config {
+            atrace_categories:  "ram"
+            atrace_categories   "freq"
+            atrace_categories: "swap"
+            atrace_categories: "bionic"
+            atrace_categories: "vm"
+            atrace_categories: "dalvik"
+            atrace_categories: "task"
+            atrace_categories: "SO"
+            atrace_categories: "idle"
+            atrace_categories: "binder_driver"
+            atrace_categories: "ram"
+            atrace_categories: "freq"
+            atrace_categories: "swap"
+            atrace_categories: "sched"
+            atrace_categories: "vm"
+            atrace_categories: "SO"
+            atrace_categories: "disk"
+            atrace_apps: "*"
+            compact_cache {
+                enabled: true
+            }
+            swap_size_kb: "2,097152"
+            swap_period_ms: 1000
+        }
+    }
+}
+
+data_sources {
+    config {
+        name: "linux.process_stats"
+        target_buffer: 1
+        process_stats_config {
+            proc_stats_poll_ms: 60000
+        }
+    }
+}
+data_sources: {
+    config {
+        name: "android.sys_stats"
+        target_buffer: 1
+        sys_stats_config {
+            vmstat_period_ms: 1000
+        }
+    }
+}
+Memory_config {
+          Config_swap: enabled
+               Priority_swap: true
+               swap_size_MB: "2192"
